@@ -82,6 +82,13 @@ public class HttpRequestPost extends UrlRequestData {
                     e.printStackTrace();
                 }
             }
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             connection.disconnect();
         }
         return str;
