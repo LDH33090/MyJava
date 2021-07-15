@@ -7,9 +7,8 @@ import java.util.List;
 
 //redis获取token类 继承了redis链接所用数据类
 public class RedisResponseGetToken extends RedisRequestData {
-
-    //设定长度为100的数组存放在redis中获取到的token
-    //public static String[] tokenArray = new String[100];
+    
+     //设定列表，列表长度为100，用于存放每一个在redis中获取到的token
      ArrayList<String> tokenArray = new ArrayList<>(100);
 
     //redis请求成功后，获取token的方法
