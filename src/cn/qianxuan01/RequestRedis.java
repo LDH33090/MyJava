@@ -8,7 +8,7 @@ public class RequestRedis extends RedisRequestData{
         //测试是否链接成功
         System.out.println("链接:" + jedis.ping());
 
-        //设定100，表示分页读取中，每页有100条数据
+        //设定1000，表示分页读取数据，每页可读取到1000条数据
         scanParams.count(1000);
         return true;
     }
