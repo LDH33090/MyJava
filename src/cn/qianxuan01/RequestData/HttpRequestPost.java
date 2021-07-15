@@ -30,7 +30,7 @@ public class HttpRequestPost extends UrlRequestData {
             connection = (HttpURLConnection) u.openConnection();
             connection.setRequestProperty("content-type", "application/json;charset=utf-8");
             //把获取到的token作为接口的请求头，获取到的token放在ArrayList中，创建RedisResponseGetToken对象，
-            // 调用类里面获取token的方法，再根据ArrayList的get()随机获取token
+            // RedisResponseGetToken对象调用获取token的方法，再根据ArrayList的get(下标)随机获取token
             connection.setRequestProperty("Token", new RedisResponseGetToken().getToken().get(random.nextInt(tokenSize)));
             connection.setRequestMethod("POST");
 
