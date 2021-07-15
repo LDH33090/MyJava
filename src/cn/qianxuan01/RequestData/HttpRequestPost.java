@@ -34,13 +34,6 @@ public class HttpRequestPost extends UrlRequestData {
             connection.setRequestProperty("Token", new RedisResponseGetToken().getToken().get(random.nextInt(tokenSize)));
             connection.setRequestMethod("POST");
 
-
-            //打印响应码
-            int responseCode = connection.getResponseCode();
-            System.out.println(responseCode);
-
-            is = connection.getInputStream();
-            br = new BufferedReader(new InputStreamReader(is));
             str = "{\n" +
                     "\t\"extra_data\": {\n" +
                     "\t\t\"commodityList\": [{\n" +
@@ -58,6 +51,16 @@ public class HttpRequestPost extends UrlRequestData {
                     "\t\t\"shareId\": \"216cb60d5ff9406aa22017f5bb6c9ddb\"\n" +
                     "\t}\n" +
                     "}";
+              //请求body使用数据流输出
+            connection.setDoOutput(true);
+            try(OutputStream outputStream = connection.getOutputStream()) {
+                outputStream.write(requestData.getBytes("utf-8"));
+            }
+                 //打印响应码
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            is = connection.getInputStream();
+            br = new BufferedReader(new InputStreamReader(is));
             while ((str = br.readLine()) != null) {
                 str = new String(str.getBytes(), "UTF-8");
                 System.out.println(str);
